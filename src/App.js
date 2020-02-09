@@ -1,10 +1,10 @@
 import React from 'react'
-import Shop from './components/Shop'
 
+import MyNav from './components/Navbar'
 function App() {
   return (
     <div className="App">
-      <Shop />
+      <MyNav />
     </div>
   );
 }

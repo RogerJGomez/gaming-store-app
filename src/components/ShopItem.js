@@ -16,7 +16,7 @@ const styles= {
                         <CardTitle><h3>{props.product.name}</h3></CardTitle>
                         <CardText>{props.product.description}</CardText>
                         <CardText>Available: {props.product.stock}</CardText>
-                        <Button color="secondary">Add to cart</Button>
+                        <Button onClick={()=>{props.addProduct(props.product.id)}} color="secondary">Add to cart</Button>
                     </CardBody>
                 </Card>
             </div>
