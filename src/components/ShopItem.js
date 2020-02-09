@@ -1,9 +1,28 @@
 import React from 'react'
+import {Col, Card, CardImg, CardText, CardBody,
+    CardTitle, Button } from 'reactstrap'
 
-export default function ShopItem() {
+const styles= {
+    marginTop:'30px',
+    marginBottom:'30px'
+}
+ const ShopItem = props => {
     return (
-        <div>
-            <p>Este el producto</p>
-        </div>
+        <Col md="3">
+            <div >
+                <Card style={styles}>
+                    <CardImg top width="30%" src={props.product.image} alt="Card image cap" />
+                    <CardBody style={{textAlign:'center'}}>
+                        <CardTitle><h3>{props.product.name}</h3></CardTitle>
+                        <CardText>{props.product.description}</CardText>
+                        <CardText>Available: {props.product.stock}</CardText>
+                        <Button color="secondary">Add to cart</Button>
+                    </CardBody>
+                </Card>
+            </div>
+        </Col>
     )
 }
+
+
+export default ShopItem
