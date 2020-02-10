@@ -5,8 +5,7 @@ var ProductsData = [
     description:'Amazing Gaming Console',    
     stock:15,
     image:"https://mxsonyb2c.vteximg.com.br/arquivos/ids/176982-1000-1000/ps4.pro_1.jpg",
-    price:400,
-    quantity:0
+    price:400
     },
 {
     id:2,
@@ -14,8 +13,7 @@ var ProductsData = [
     description:'Amazing Gaming Console',    
     stock:15,
     image:"https://mxsonyb2c.vteximg.com.br/arquivos/ids/176982-1000-1000/ps4.pro_1.jpg",
-    price:400,
-    quantity:0
+    price:400
 },
 {
     id:3,
@@ -23,8 +21,7 @@ var ProductsData = [
     description:'Amazing Gaming Console',    
     stock:15,
     image:"https://mxsonyb2c.vteximg.com.br/arquivos/ids/176982-1000-1000/ps4.pro_1.jpg",
-    price:400,
-    quantity:0
+    price:400
 },
 {
     id:4,
@@ -32,8 +29,7 @@ var ProductsData = [
     description:'Amazing Gaming Console',    
     stock:15,
     image:"https://mxsonyb2c.vteximg.com.br/arquivos/ids/176982-1000-1000/ps4.pro_1.jpg",
-    price:400,
-    quantity:0
+    price:400
 },
 {
     id:5,
@@ -41,8 +37,7 @@ var ProductsData = [
     description:'Amazing Gaming Console',    
     stock:15,
     image:"https://mxsonyb2c.vteximg.com.br/arquivos/ids/176982-1000-1000/ps4.pro_1.jpg",
-    price:400,
-    quantity:0
+    price:400
 },
 {
     id:6,
@@ -50,8 +45,7 @@ var ProductsData = [
     description:'Amazing Gaming Console',    
     stock:15,
     image:"https://mxsonyb2c.vteximg.com.br/arquivos/ids/176982-1000-1000/ps4.pro_1.jpg",
-    price:400,
-    quantity:0
+    price:400
 },
 {
     id:7,
@@ -59,8 +53,7 @@ var ProductsData = [
     description:'Amazing Gaming Console',    
     stock:15,
     image:"https://mxsonyb2c.vteximg.com.br/arquivos/ids/176982-1000-1000/ps4.pro_1.jpg",
-    price:400,
-    quantity:0
+    price:400
 },
 {
     id:8,
@@ -68,8 +61,7 @@ var ProductsData = [
     description:'Amazing Gaming Console',    
     stock:15,
     image:"https://mxsonyb2c.vteximg.com.br/arquivos/ids/176982-1000-1000/ps4.pro_1.jpg",
-    price:400,
-    quantity:0
+    price:400
 }
 ]
 

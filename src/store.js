@@ -3,7 +3,8 @@ import ProductsData from './ProductsData'
 
 const initialState = {
     products:ProductsData,
-    cart:[]
+    cart:[],
+    subtotal:0
 };
 
 const reducerManager = (state = initialState, action) => {
@@ -35,16 +36,27 @@ const reducerManager = (state = initialState, action) => {
             newcart.push(productCart[0])
         }
         else{
-            productAdded[0].quantity=1
-            newcart.push(productAdded[0])
+            let newCartProduct ={
+                id:productAdded[0].id,
+                name:productAdded[0].name,
+                image:productAdded[0].image,
+                price:productAdded[0].price,
+                quantity:1,
+            }
+            newcart.push(newCartProduct)
         }
-
+        
         newcart.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
-      
+
+        let subtotal = 0
+
+        newcart.map(product => subtotal = subtotal + product.quantity*product.price)
+
         return {
         ...state,
         cart: newcart,
-        products: newShop
+        products: newShop,
+        subtotal: subtotal
       };
 
     }
@@ -61,21 +73,95 @@ const reducerManager = (state = initialState, action) => {
         
         newShop.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
 
-        let productCart = state.cart.filter(product => product.id === action.product.id)
-
         let newcart = state.cart.filter(product => product.id !== action.product.id)
 
-        if(productCart[0].quantity>1){
-            productCart[0].quantity = productCart[0].quantity - 1 
-            newcart.push(productCart[0])
-        }
-
         newcart.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
+        
+        let subtotal = 0
+
+        newcart.map(product => subtotal = subtotal + product.quantity*product.price)
 
         return {
         ...state,
         cart: newcart,
-        products: newShop
+        products: newShop,
+        subtotal: subtotal
+      };
+
+    }
+
+    if (action.type === "PLUS_PRODUCT") {
+
+        let currentProduct= state.products.filter(product => product.id === action.product.id)
+
+        currentProduct[0].stock = currentProduct[0].stock -1
+
+        let newShop = state.products.filter(product => product.id !== action.product.id)
+
+        newShop.push(currentProduct[0])
+        
+        newShop.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
+
+        let newcart = state.cart.filter(product => product.id !== action.product.id)
+
+        action.product.quantity = action.product.quantity + 1 
+
+        newcart.push(action.product)
+
+        newcart.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
+        
+        let subtotal = 0
+
+        newcart.map(product => subtotal = subtotal + product.quantity*product.price)
+
+        return {
+        ...state,
+        cart: newcart,
+        products: newShop,
+        subtotal: subtotal
+      };
+
+    }
+
+    if (action.type === "MINUS_PRODUCT") {
+
+        let currentProduct= state.products.filter(product => product.id === action.product.id)
+
+        currentProduct[0].stock = currentProduct[0].stock +1
+
+        let newShop = state.products.filter(product => product.id !== action.product.id)
+
+        newShop.push(currentProduct[0])
+        
+        newShop.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
+
+        let newcart = state.cart.filter(product => product.id !== action.product.id)
+
+        action.product.quantity = action.product.quantity -1 
+
+        newcart.push(action.product)
+        
+        newcart.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
+        
+        let subtotal = 0
+
+        newcart.map(product => subtotal = subtotal + product.quantity*product.price)
+
+        return {
+        ...state,
+        cart: newcart,
+        products: newShop,
+        subtotal: subtotal
+      };
+
+    }
+
+    if (action.type === "PURCHASE_PRODUCTS") {
+
+        return {
+        ...state,
+        cart: [],
+        subtotal: 0
       };
 
     }

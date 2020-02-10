@@ -7,11 +7,11 @@ import {
   Switch,
   Route,
   Link, Redirect
-} from "react-router-dom";
+} from "react-router-dom"
 
 
 const LinkStyles={
-    color:"#000",
+    color:"rgba(0,0,0,.5)",
     textDecoration:"none"
 }
 
@@ -24,17 +24,18 @@ const MyNav = () => {
   return (
     <div style={{paddingBottom:'1%'}}>
         <Router>  
-            <Navbar color="faded" light>
-                <NavbarBrand  className="mr-auto">TechStore</NavbarBrand>
+            <Navbar color="faded" light >
+                <NavbarBrand  className="mr-auto"><img src="/logo-nav.png" width="300px" alt="logo"></img></NavbarBrand>
                 <NavbarToggler onClick={toggleNavbar} className="mr-2" />
-                <Collapse isOpen={!collapsed} navbar>
-                <Nav navbar>
+                <Collapse isOpen={!collapsed} navbar >
+                <Nav navbar justified >
                     <NavItem>
-                        <Link style={LinkStyles}to="/Cart">Cart</Link>
+                        <Link style={LinkStyles}to="/Cart"><strong>Cart</strong></Link>
                    </NavItem>
                    <NavItem>
-                        <Link style={LinkStyles} to="/Shop">Home</Link>
+                        <Link style={LinkStyles} to="/Shop"><strong>Shop</strong></Link>
                    </NavItem>
+                   
                 </Nav>
                 </Collapse>
             </Navbar>
