@@ -47,7 +47,7 @@ const Shop = ({ products,subtotal, addProduct}) => {
 
     return (
 
-        <Container style={{textAlign:"right"}}>
+        <Container style={{marginTop:"40px"}}>
             <h3>Subtotal ${subtotal}</h3>
             <Row>
             {     
@@ -62,7 +62,7 @@ const Shop = ({ products,subtotal, addProduct}) => {
                                     <CardText>{product.description}</CardText>
                                     <CardText><strong>${product.price}</strong></CardText>
                                     <CardText>Stock: {product.stock}</CardText>
-                                    <Button onClick={()=>{addProduct(product); alertHandler(product)}} color="secondary">Add to cart {<FontAwesomeIcon icon={faShoppingCart} />}</Button>
+                                    <Button onClick={()=>{addProduct(product); alertHandler(product)}}>Add to cart {<FontAwesomeIcon icon={faShoppingCart} />}</Button>
                                 </CardBody>
                             </Card>
                         </div>

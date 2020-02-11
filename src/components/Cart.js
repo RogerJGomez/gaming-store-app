@@ -6,7 +6,7 @@ import CustomAlert from 'sweetalert2'
 
 
 const styles={
-    border:"1px solid #939393", borderRadius:"15px", marginTop:"50px",padding:"2%"}
+    border:"1px solid rgba(0,0,0,.125)", borderRadius:"15px", marginTop:"50px",padding:"2%"}
 
 const Toast = CustomAlert.mixin({
     toast: true,
@@ -45,7 +45,19 @@ const Cart = ({cart, subtotal, removeProduct, plusProduct, minusProduct, purchas
           })
         
     }
-    
+
+    const ImgDisplay = (props) =>{
+        console.log(props.product.type)
+        if(props.product.type==="game"){
+            return(
+                <CardImg top src={props.product.image} alt="Card image cap" className="game"/>
+            )
+        }
+        return(
+            <CardImg top src={props.product.image} alt="Card image cap" className="console"/>
+        )
+    }
+
     const DisplayCart = (props) =>{
 
         if(props.cart.length>0){
@@ -55,7 +67,7 @@ const Cart = ({cart, subtotal, removeProduct, plusProduct, minusProduct, purchas
                     <Col md="4" key ={product.id}>
                     <div >
                         <Card style={{marginTop:'30px', marginBottom:'30px'}}>
-                            <CardImg top width="30%" src={product.image} alt="Card image cap" />
+                        <ImgDisplay product={product} />
                             <CardBody style={{textAlign:'center'}}>
                                 <CardTitle><h3>{product.name}</h3></CardTitle>
                                 <CardText><strong>${product.price}</strong></CardText>
@@ -115,8 +127,8 @@ const Cart = ({cart, subtotal, removeProduct, plusProduct, minusProduct, purchas
                 </Col>
                 <Col md="12">
 
-                    <strong>Details</strong>
-                    <p>Subtotal: <strong>${subtotal}</strong></p>
+                    <h3>Details</h3>
+                    <h4>Subtotal: ${subtotal}</h4>
 
                     <DisplayButton />
 

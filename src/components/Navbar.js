@@ -25,7 +25,7 @@ const MyNav = () => {
     <div style={{paddingBottom:'1%'}}>
         <Router>  
             <Navbar color="faded" light >
-                <NavbarBrand  className="mr-auto"><img src="/logo-nav.png" width="300px" alt="logo"></img></NavbarBrand>
+                <NavbarBrand  className="mr-auto"><img src="/logo-nav.png" width="200px" height="65px" alt="logo"></img></NavbarBrand>
                 <NavbarToggler onClick={toggleNavbar} className="mr-2" />
                 <Collapse isOpen={!collapsed} navbar >
                 <Nav navbar justified >

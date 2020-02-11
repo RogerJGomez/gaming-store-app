@@ -41,6 +41,7 @@ const reducerManager = (state = initialState, action) => {
                 name:productAdded[0].name,
                 image:productAdded[0].image,
                 price:productAdded[0].price,
+                type:productAdded[0].type,
                 quantity:1,
             }
             newcart.push(newCartProduct)
@@ -90,13 +91,13 @@ const reducerManager = (state = initialState, action) => {
 
     if (action.type === "PLUS_PRODUCT") {
 
-        let currentProduct= state.products.filter(product => product.id === action.product.id)
+        let shopProduct= state.products.filter(product => product.id === action.product.id)
 
-        currentProduct[0].stock = currentProduct[0].stock -1
+        shopProduct[0].stock = shopProduct[0].stock -1
 
         let newShop = state.products.filter(product => product.id !== action.product.id)
 
-        newShop.push(currentProduct[0])
+        newShop.push(shopProduct[0])
         
         newShop.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
 
@@ -123,13 +124,13 @@ const reducerManager = (state = initialState, action) => {
 
     if (action.type === "MINUS_PRODUCT") {
 
-        let currentProduct= state.products.filter(product => product.id === action.product.id)
+        let shopProduct= state.products.filter(product => product.id === action.product.id)
 
-        currentProduct[0].stock = currentProduct[0].stock +1
+        shopProduct[0].stock = shopProduct[0].stock +1
 
         let newShop = state.products.filter(product => product.id !== action.product.id)
 
-        newShop.push(currentProduct[0])
+        newShop.push(shopProduct[0])
         
         newShop.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
 

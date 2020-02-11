@@ -1,7 +1,12 @@
+
+$PrimaryColor : #1B87C5;
+$SecondaryColor: #6c757d;
+$FontFamily:'Play', sans-serif ;
+
 @import url('https://fonts.googleapis.com/css?family=Play&display=swap');
 body {
   margin: 0;
-  font-family: 'Play', sans-serif !important;
+  font-family: $FontFamily !important;
 }
 
 
@@ -16,4 +21,36 @@ body {
 
 .nav-item a:hover {
   color:#1B1B1B !important
+}
+
+
+.btn{
+  background-color:$PrimaryColor !important;
+  border-color:$PrimaryColor !important ;
+}
+
+.btn:hover{
+  background-color: $SecondaryColor !important;
+  border-color:$SecondaryColor !important ;
+}
+
+%cart-images-style{
+  height: 300px !important;
+  padding: 5%;
+}
+
+.game{
+
+  width: 250px !important;
+  align-self: center ;
+  @extend %cart-images-style;
+}
+
+.console{
+  @extend %cart-images-style;
+}
+
+
+.navbar{
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.19) !important;
 }
