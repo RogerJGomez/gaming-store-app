@@ -48,28 +48,28 @@ const reducerManager = (state = initialState, action) => {
         
         newcart.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
 
-        let subtotal = 0
-
-        newcart.map(product => subtotal = subtotal + product.quantity*product.price)
+        let subtotal = newcart.reduce((total, product) => total + product.price*product.quantity, 0)
 
         return {
         ...state,
         cart: newcart,
         products: newShop,
-        subtotal: subtotal
+        subtotal
       };
 
     }
 
     if (action.type === "REMOVE_PRODUCT") {
 
-        let currentProduct= state.products.filter(product => product.id === action.product.id)
+        let shopProduct= state.products.filter(product => product.id === action.product.id)
 
-        currentProduct[0].stock = currentProduct[0].stock +1
+        let cartPrduct = state.cart.filter(product => product.id === action.product.id)
+
+        shopProduct[0].stock = shopProduct[0].stock + cartPrduct[0].quantity
 
         let newShop = state.products.filter(product => product.id !== action.product.id)
 
-        newShop.push(currentProduct[0])
+        newShop.push(shopProduct[0])
         
         newShop.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
 
@@ -77,15 +77,13 @@ const reducerManager = (state = initialState, action) => {
 
         newcart.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
         
-        let subtotal = 0
-
-        newcart.map(product => subtotal = subtotal + product.quantity*product.price)
+        let subtotal = newcart.reduce((total, product) => total + product.price*product.quantity, 0)
 
         return {
         ...state,
         cart: newcart,
         products: newShop,
-        subtotal: subtotal
+        subtotal
       };
 
     }
@@ -110,15 +108,15 @@ const reducerManager = (state = initialState, action) => {
 
         newcart.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
         
-        let subtotal = 0
+        let subtotal = newcart.reduce((total, product) => total + product.price*product.quantity, 0)
 
-        newcart.map(product => subtotal = subtotal + product.quantity*product.price)
+        
 
         return {
         ...state,
         cart: newcart,
         products: newShop,
-        subtotal: subtotal
+        subtotal
       };
 
     }
@@ -143,15 +141,14 @@ const reducerManager = (state = initialState, action) => {
         
         newcart.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
         
-        let subtotal = 0
+        let subtotal = newcart.reduce((total, product) => total + product.price*product.quantity, 0)
 
-        newcart.map(product => subtotal = subtotal + product.quantity*product.price)
 
         return {
         ...state,
         cart: newcart,
         products: newShop,
-        subtotal: subtotal
+        subtotal
       };
 
     }

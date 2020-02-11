@@ -4,10 +4,14 @@ body {
   font-family: 'Play', sans-serif !important;
 }
 
-.nav-justified .nav-item {
 
-  text-align: right !important;
-  margin-right: 20px !important;
+@media (min-width:1200px){
+  .nav-justified .nav-item {
+
+    text-align: right !important;
+    margin-right: 20px !important;
+  }
+  
 }
 
 .nav-item a:hover {
