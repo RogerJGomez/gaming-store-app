@@ -3,7 +3,7 @@ import { Container, Row, Col, Card, CardImg, CardText, CardBody,
     CardTitle, Button } from 'reactstrap'
 import { connect } from 'react-redux'
 import CustomAlert from 'sweetalert2'
-
+import {remove, plus, minus, purchase} from '../actions'
 
 const styles={
     border:"1px solid rgba(0,0,0,.125)", borderRadius:"15px", marginTop:"50px",padding:"2%"}
@@ -47,7 +47,6 @@ const Cart = ({cart, subtotal, removeProduct, plusProduct, minusProduct, purchas
     }
 
     const ImgDisplay = (props) =>{
-        console.log(props.product.type)
         if(props.product.type==="game"){
             return(
                 <CardImg top src={props.product.image} alt="Card image cap" className="game"/>
@@ -146,34 +145,24 @@ const mapStateToProps = state => ({
   });
 
 
-const mapDispatchToProps = dispatch => ({
-    
-    removeProduct(product) {
-        dispatch({
-        type: "REMOVE_PRODUCT",
-        product
-        });
-    },
-    plusProduct(product) {
-        dispatch({
-        type: "PLUS_PRODUCT",
-        product
-        });
-    },
-    minusProduct(product) {
-        dispatch({
-        type: "MINUS_PRODUCT",
-        product
-        });
-    },
-    purchaseProducts() {
-        dispatch({
-        type: "PURCHASE_PRODUCTS"
-        });
-    }
 
+  
+  const mapDispatchToProps = dispatch => ({
 
-});
+      removeProduct: (product) => {
+        dispatch(remove(product))
+      },
+      plusProduct: (product) => {
+        dispatch(plus(product))
+      },
+      minusProduct: (product) => {
+        dispatch(minus(product))
+      },
+      purchaseProducts: (product) => {
+        dispatch(purchase(product))
+      }
+  })
+  
   
   
 export default connect(

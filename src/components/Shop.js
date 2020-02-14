@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import CustomAlert from 'sweetalert2'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-
+import {add} from '../actions'
 
 const styles= {
     marginTop:'30px',
@@ -26,7 +26,7 @@ const Toast = CustomAlert.mixin({
 
 
 
-const Shop = ({ products,subtotal, addProduct}) => {
+const Shop = ({products,subtotal, addProduct}) => {
 
 
     const alertHandler = (product) =>{
@@ -82,15 +82,12 @@ const mapStateToProps = state => ({
   });
 
 
-const mapDispatchToProps = dispatch => ({
-addProduct(product) {
-    dispatch({
-    type: "ADD_PRODUCT",
-    product
-    });
-}
-});
-  
+  const mapDispatchToProps = dispatch => ({
+    addProduct: (product) => {
+      dispatch(add(product))
+    }
+})
+
   
 export default connect(
     mapStateToProps,
