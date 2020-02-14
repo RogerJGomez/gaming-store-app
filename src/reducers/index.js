@@ -14,157 +14,159 @@ export const reducers = (state = initialState, action) => {
     switch(action.type){
 
         case ADD_PRODUCT:
-          var productAdded = [...state.products]
-          productAdded = productAdded.filter(product => product.id === action.product.id)
+
+          var products = [...state.products]
+          var productAdded = products.find(product => product.id === action.product.id)
           
-          if(productAdded[0].stock===0){
+          if(productAdded.stock===0){
               return state
           }
 
-          var newShop = [...state.products]
-          newShop = newShop.filter(product => product.id !== action.product.id)
+          products = products.filter(product => product.id !== action.product.id)
 
-          productAdded[0].stock = productAdded[0].stock - 1
+          productAdded.stock = productAdded.stock - 1
 
-          newShop = [...newShop, productAdded[0]]
+          products = [...products, productAdded]
 
-          newShop.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
+          products.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
 
-          var productCart = [...state.cart]
-          productCart = productCart.filter(product => product.id === action.product.id)
+          var cart = [...state.cart]
+          
+          var productCart = cart.find(product => product.id === action.product.id)
 
-          var newcart = [...state.cart]
-          newcart = newcart.filter(product => product.id !== action.product.id)
+          cart = cart.filter(product => product.id !== action.product.id)
 
-          if(productCart.length>0){
-              productCart[0].quantity = productCart[0].quantity + 1 
-              newcart.push(productCart[0])
+          if(productCart){
+
+              productCart.quantity = productCart.quantity + 1
+              cart = [...cart, productCart]
           }
           else{
-              let newCartProduct ={
-                  id:productAdded[0].id,
-                  name:productAdded[0].name,
-                  image:productAdded[0].image,
-                  price:productAdded[0].price,
-                  type:productAdded[0].type,
+
+              let newCartProduct = {
+                  id:productAdded.id,
+                  name:productAdded.name,
+                  image:productAdded.image,
+                  price:productAdded.price,
+                  type:productAdded.type,
                   quantity:1,
               }
-              newcart.push(newCartProduct)
+              cart = [...cart, newCartProduct]
           }
           
-          newcart.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
+          cart.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
 
-          var subtotal = newcart.reduce((total, product) => total + product.price*product.quantity, 0)
+          var subtotal = cart.reduce((total, product) => total + product.price*product.quantity, 0)
 
           return {
           ...state,
-          cart: newcart,
-          products: newShop,
+          cart,
+          products,
           subtotal
         }
 
         case REMOVE_PRODUCT:
 
-          var shopProduct= [...state.products]
-          shopProduct = shopProduct.filter(product => product.id === action.product.id)
+          products = [...state.products]
 
-          var cartPrduct = [...state.cart]
-          cartPrduct = cartPrduct.filter(product => product.id === action.product.id)
+          var shopProduct = products.find(product => product.id === action.product.id)
 
-          shopProduct[0].stock = shopProduct[0].stock + cartPrduct[0].quantity
+          cart = [...state.cart]
 
-          newShop = [...state.products]
-          newShop =  newShop.filter(product => product.id !== action.product.id)
+          var cartPrduct = cart.find(product => product.id === action.product.id)
 
-          newShop.push(shopProduct[0])
+          shopProduct.stock =  shopProduct.stock + cartPrduct.quantity
+
+          cart = cart.filter(product => product.id !== action.product.id)
+
+          cart.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
+
+          products = products.filter(product => product.id !== action.product.id)
+
+          products = [...products, shopProduct]
           
-          newShop.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
-
-          newcart = [...state.cart]
-          newcart= newcart.filter(product => product.id !== action.product.id)
-
-          newcart.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
+          products.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
           
-          subtotal = newcart.reduce((total, product) => total + product.price*product.quantity, 0)
+          subtotal = cart.reduce((total, product) => total + product.price*product.quantity, 0)
 
           return {
           ...state,
-          cart: newcart,
-          products: newShop,
+          cart,
+          products,
           subtotal
         }
 
         case PLUS_PRODUCT:
 
-          shopProduct= [...state.products]
-          shopProduct = shopProduct.filter(product => product.id === action.product.id)
+          products = [...state.products]
 
-          shopProduct[0].stock = shopProduct[0].stock -1
+          shopProduct = products.find(product => product.id === action.product.id)
 
-          newShop = [...state.products]
-          newShop = newShop.filter(product => product.id !== action.product.id)
+          shopProduct.stock = shopProduct.stock - 1
 
-          newShop.push(shopProduct[0])
+          products = products.filter(product => product.id !== action.product.id)
+
+          products = [...products, shopProduct]
           
-          newShop.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
+          products.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
 
-          newcart = [...state.cart]
-          newcart = newcart.filter(product => product.id !== action.product.id)
+          cart = [...state.cart]
+          cart = cart.filter(product => product.id !== action.product.id)
 
-          var product = action.product
+          var newProduct = action.product
 
-          product.quantity = product.quantity +1
+          newProduct.quantity = newProduct.quantity + 1
 
-          newcart.push(product)
+          cart = [...cart, newProduct]
 
-          newcart.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
+          cart.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
           
-          subtotal = newcart.reduce((total, product) => total + product.price*product.quantity, 0)
+          subtotal = cart.reduce((total, product) => total + product.price*product.quantity, 0)
 
           
 
           return {
           ...state,
-          cart: newcart,
-          products: newShop,
+          cart,
+          products,
           subtotal
         }
-
 
         case MINUS_PRODUCT: 
         
-          shopProduct= [...state.products]
-          shopProduct= shopProduct.filter(product => product.id === action.product.id)
+          products = [...state.products]
 
-          shopProduct[0].stock = shopProduct[0].stock +1
+          shopProduct = products.find(product => product.id === action.product.id)
+
+          shopProduct.stock  = shopProduct.stock + 1
+
+          products = products.filter(product => product.id !== action.product.id)
+
+          products = [...products, shopProduct]
           
-          newShop = [...state.products]
-          newShop = newShop.filter(product => product.id !== action.product.id)
-          newShop.push(shopProduct[0])
+          products.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
+
+          cart = [...state.cart]
+          cart = cart.filter(product => product.id !== action.product.id)
+
+          newProduct = action.product
+
+          newProduct.quantity = newProduct.quantity - 1
+
+          cart = [...cart, newProduct]
+
+          cart.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
           
-          newShop.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
-
-          newcart = [...state.cart]
-          newcart = newcart.filter(product => product.id !== action.product.id)
-
-          product = action.product
-
-          product.quantity = product.quantity -1
-
-          newcart.push(product)
-        
-          newcart.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
-          
-          subtotal = newcart.reduce((total, product) => total + product.price*product.quantity, 0)
+          subtotal = cart.reduce((total, product) => total + product.price*product.quantity, 0)
 
 
           return {
           ...state,
-          cart: newcart,
-          products: newShop,
+          cart,
+          products,
           subtotal
         }
-
+        
         case PURCHASE_PRODUCTS:
           return {
             ...state,
