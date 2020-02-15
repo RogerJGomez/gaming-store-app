@@ -28,7 +28,7 @@ const MyNav = () => {
                 <NavbarBrand  className="mr-auto"><img src="/logo-nav.png" width="200px" height="65px" alt="logo"></img></NavbarBrand>
                 <NavbarToggler onClick={toggleNavbar} className="mr-2" />
                 <Collapse isOpen={!collapsed} navbar >
-                <Nav navbar justified >
+                <Nav navbar>
                     <NavItem>
                         <Link style={LinkStyles}to="/Cart"><strong>Cart</strong></Link>
                    </NavItem>

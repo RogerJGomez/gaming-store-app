@@ -9,6 +9,7 @@ const initialState = {
     subtotal:0
 };
 
+
 export const reducers = (state = initialState, action) => {
 
     switch(action.type){
