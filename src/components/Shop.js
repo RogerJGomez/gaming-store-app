@@ -8,8 +8,9 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 import {add} from '../actions'
 
 const styles= {
-    marginTop:'30px',
-    marginBottom:'30px'
+    marginTop:'2vh',
+    marginBottom:'2vh',
+    minHeight:'50vh'
 }
 
 const Toast = CustomAlert.mixin({
@@ -27,7 +28,6 @@ const Toast = CustomAlert.mixin({
 
 
 const Shop = ({products,subtotal, addProduct}) => {
-
 
     const alertHandler = (product) =>{
 
@@ -47,7 +47,7 @@ const Shop = ({products,subtotal, addProduct}) => {
 
     return (
 
-        <Container style={{marginTop:"40px"}}>
+        <Container style={{marginTop:"7vh"}}>
             <h3>Subtotal ${subtotal}</h3>
             <Row>
             {     

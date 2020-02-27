@@ -11,13 +11,6 @@ body {
 
 
 
-.navbar-nav {
-  align-items: flex-end;
-  padding-right: 20px;
-  padding-bottom: 10px;
-}
-
-
 
 .nav-item a:hover {
   color:#1B1B1B !important
@@ -57,4 +50,11 @@ body {
   top:0;
   z-index: 1 ;
   background-color: #fff;
+}
+
+
+.navbar-nav {
+  align-items: flex-end;
+  padding-right: 20px;
+  padding-bottom: 10px;
 }

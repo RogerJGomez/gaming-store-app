@@ -6,7 +6,7 @@ import CustomAlert from 'sweetalert2'
 import {remove, plus, minus, purchase} from '../actions'
 
 const styles={
-    border:"1px solid rgba(0,0,0,.125)", borderRadius:"15px", marginTop:"50px",padding:"2%"}
+    border:"1px solid rgba(0,0,0,.125)", borderRadius:"15px", marginTop:"7vh",padding:"2%"}
 
 const Toast = CustomAlert.mixin({
     toast: true,
@@ -65,7 +65,7 @@ const Cart = ({cart, subtotal, removeProduct, plusProduct, minusProduct, purchas
                  return(
                     <Col md="4" key ={product.id}>
                     <div >
-                        <Card style={{marginTop:'30px', marginBottom:'30px'}}>
+                        <Card style={{marginTop:'2vh', marginBottom:'2vh'}}>
                         <ImgDisplay product={product} />
                             <CardBody style={{textAlign:'center'}}>
                                 <CardTitle><h3>{product.name}</h3></CardTitle>
@@ -91,7 +91,7 @@ const Cart = ({cart, subtotal, removeProduct, plusProduct, minusProduct, purchas
         return(
             <Col md="12" >
                 <div >
-                    <Card style={{marginTop:'30px', marginBottom:'30px'}}>
+                    <Card style={{marginTop:'2vh', marginBottom:'2vh'}}>
 
                         <CardBody style={{textAlign:'center'}}>
                             <CardTitle><h3>Empty cart</h3></CardTitle>
@@ -112,7 +112,7 @@ const Cart = ({cart, subtotal, removeProduct, plusProduct, minusProduct, purchas
 
     return (
 
-        <Container style={{textAlign:'center', marginBottom:'40px'}}>
+        <Container style={{textAlign:'center', marginBottom:'6vh'}}>
 
             <Row style={styles} >
 

@@ -17,23 +17,23 @@ const LinkStyles={
 
 const MyNav = () => {
 
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(true)
 
-  const toggleNavbar = () => setCollapsed(!collapsed);
+  const toggleNavbar = () => setCollapsed(!collapsed)
 
   return (
     <div style={{paddingBottom:'1%'}}>
         <Router>  
-            <Navbar color="faded" light >
-                <NavbarBrand  className="mr-auto"><img src="/logo-nav.png" width="200px" height="65px" alt="logo"></img></NavbarBrand>
+            <Navbar color="faded" light>
+                <NavbarBrand  className="mr-auto"><img src="/logo-nav.png" width="180px" height="55px" alt="logo"></img></NavbarBrand>
                 <NavbarToggler onClick={toggleNavbar} className="mr-2" />
                 <Collapse isOpen={!collapsed} navbar >
-                <Nav navbar>
-                    <NavItem>
-                        <Link style={LinkStyles}to="/Cart"><strong>Cart</strong></Link>
+                <Nav className="ml-auto" navbar>
+                    <NavItem style={{marginRight:'2vh', marginLeft:'2vh'}}>
+                        <Link style={LinkStyles}to="/Cart" onClick={toggleNavbar}><strong>Cart</strong></Link>
                    </NavItem>
-                   <NavItem>
-                        <Link style={LinkStyles} to="/Shop"><strong>Shop</strong></Link>
+                   <NavItem style={{marginRight:'2vh', marginLeft:'2vh'}} >
+                        <Link style={LinkStyles} to="/Shop" onClick={toggleNavbar}><strong>Shop</strong></Link>
                    </NavItem>
                    
                 </Nav>
