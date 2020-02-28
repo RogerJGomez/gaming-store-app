@@ -49,11 +49,11 @@ const Cart = ({cart, subtotal, removeProduct, plusProduct, minusProduct, purchas
     const ImgDisplay = (props) =>{
         if(props.product.type==="game"){
             return(
-                <CardImg top src={props.product.image} alt="Card image cap" className="game"/>
+                <CardImg draggable="false" top src={props.product.image} alt="Card image cap" className="game"/>
             )
         }
         return(
-            <CardImg top src={props.product.image} alt="Card image cap" className="console"/>
+            <CardImg draggable="false" top src={props.product.image} alt="Card image cap" className="console"/>
         )
     }
 

@@ -56,7 +56,7 @@ const Shop = ({products,subtotal, addProduct}) => {
                         <Col md="3" key ={product.id}>
                         <div >
                             <Card style={styles}>
-                                <CardImg top width="30%" src={product.image} style={{padding:"5%"}} alt="Card image cap" />
+                                <CardImg draggable="false" top width="30%" src={product.image} style={{padding:"5%"}} alt="Card image cap" />
                                 <CardBody style={{textAlign:'center'}}>
                                     <CardTitle><h3>{product.name}</h3></CardTitle>
                                     <CardText>{product.description}</CardText>
