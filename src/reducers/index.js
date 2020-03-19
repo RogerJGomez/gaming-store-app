@@ -9,14 +9,11 @@ const initialState = {
     subtotal:0
 };
 
-
-/* Functions */
-
-const sortProducts = products =>{
+function sortProducts(products){
   products.sort((productA,productB) => (productA.id<productB.id ? -1 : (productA.rol > productB.rol) ? 1 : 0))
 }
 
-const setQuantity = (cart, products, type , action) =>{
+function setQuantity(cart, products, type , action){
 
   let cartProduct = cart.find(product => product.id === action.product.id)
   let shopProduct = products.find(product => product.id === action.product.id)
@@ -44,10 +41,6 @@ const setQuantity = (cart, products, type , action) =>{
   sortProducts(products)  
 }
 
-/* Functions */
-
-
-
 export const reducers = (state = initialState, action) => {
 
     let products = JSON.parse(JSON.stringify(state.products))
@@ -58,14 +51,11 @@ export const reducers = (state = initialState, action) => {
     switch(action.type){
 
         case ADD_PRODUCT:
-
           shopProduct = products.find(product => product.id === action.product.id)
-          if(shopProduct.stock===0){ 
-              return{
-                ...state
-              }
-          }
-          shopProduct.stock = shopProduct.stock - 1
+          
+          if (shopProduct.stock===0) return {...state}
+          
+          shopProduct.stock -= 1
           products = products.filter(product => product.id !== action.product.id)
           products = [...products, shopProduct]
           sortProducts(products)
@@ -73,7 +63,7 @@ export const reducers = (state = initialState, action) => {
 
           if(productCart){ //If the product exists in the cart, the quantity increases
               cart = cart.filter(product => product.id !== action.product.id)
-              productCart.quantity = productCart.quantity + 1
+              productCart.quantity += 1
               cart = [...cart, productCart]
           }
           else{ //Else we create a new product to store it in the cart
@@ -87,7 +77,6 @@ export const reducers = (state = initialState, action) => {
               }
               cart = [...cart, newCartProduct]
           }
-          
           sortProducts(cart)
 
           return {
@@ -97,13 +86,11 @@ export const reducers = (state = initialState, action) => {
           subtotal : cart.reduce((total, product) => total + product.price*product.quantity, 0)
         }
           
-
-
         case REMOVE_PRODUCT:
-
           shopProduct = products.find(product => product.id === action.product.id)
           shopProduct.stock =  shopProduct.stock + action.product.quantity
           cart = cart.filter(product => product.id !== action.product.id)
+
           return {
           ...state,
           cart,
@@ -112,9 +99,7 @@ export const reducers = (state = initialState, action) => {
         }
 
         case PLUS_PRODUCT:
-
-
-            setQuantity(cart, products, "plus", action)
+          setQuantity(cart, products, "plus", action)
 
           return {
           ...state,
@@ -124,8 +109,8 @@ export const reducers = (state = initialState, action) => {
         }
 
         case MINUS_PRODUCT: 
-        
-            setQuantity(cart, products, "minus", action)
+          setQuantity(cart, products, "minus", action)
+
           return {
           ...state,
           cart,
