@@ -46,17 +46,6 @@ const Cart = ({cart, subtotal, removeProduct, plusProduct, minusProduct, purchas
         
     }
 
-    const ImgDisplay = (props) =>{
-        if(props.product.type==="game"){
-            return(
-                <CardImg draggable="false" top src={props.product.image} alt="Card image cap" className="game"/>
-            )
-        }
-        return(
-            <CardImg draggable="false" top src={props.product.image} alt="Card image cap" className="console"/>
-        )
-    }
-
     const DisplayCart = (props) =>{
 
         if(props.cart.length>0){
@@ -66,13 +55,12 @@ const Cart = ({cart, subtotal, removeProduct, plusProduct, minusProduct, purchas
                     <Col md="4" key ={product.id}>
                     <div >
                         <Card style={{marginTop:'2vh', marginBottom:'2vh'}}>
-                        <ImgDisplay product={product} />
+                            <CardImg draggable="false" top src={product.image} alt="Card image cap" className={`${product.type}`}/>
                             <CardBody style={{textAlign:'center'}}>
                                 <CardTitle><h3>{product.name}</h3></CardTitle>
                                 <CardText><strong>${product.price}</strong></CardText>
                                 <CardText>Quantity: {product.quantity } 
                                     <Button  onClick={()=>{minusProduct(product)}} style={{marginRight:"5px", marginLeft:"5px"}} color="secondary" size="sm"><strong>-</strong></Button>
-
                                     <Button onClick={()=>{plusProduct(product)}} color="secondary" size="sm"><strong>+</strong></Button>
                                  </CardText>
                                 <Button onClick={()=>{removeProduct(product); alertHandler()}} color="secondary">Remove from cart</Button>
